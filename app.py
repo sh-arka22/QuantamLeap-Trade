@@ -165,7 +165,7 @@ elif page == "Training & Forecast":
         except Exception as e:
             st.error(f"Forecast error: {e}")
 
-# --- Page 3: Strategy Execuation ---
+# --- Page 3: Strategy Execution ---
 elif page == "Strategy Execution":
     st.header("🤖 Automated Strategy Execution")
 

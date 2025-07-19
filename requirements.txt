@@ -1,0 +1,11 @@
+# File: requirements.txt
+numpy
+pandas
+scikit-learn
+tensorflow-macos
+tensorflow-metal
+flask
+streamlit
+plotly
+requests
+pytest

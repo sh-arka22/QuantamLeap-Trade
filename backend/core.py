@@ -41,8 +41,18 @@ def upload_csv(file_storage):
     return {"message": f"File {file_storage.filename} uploaded successfully."}
 
 def get_predictions(symbol, days=30):
-    # Load stock data (OHLCV)
-    data_path = os.path.join(os.getcwd(), "backend", "data", f"{symbol}.csv")
+    """Return a naive price forecast for ``symbol``.
+
+    If ``symbol`` is missing or the CSV is unavailable, an error dict is
+    returned rather than raising an exception so the API can gracefully
+    handle invalid requests.
+    """
+    if not symbol:
+        return {"error": "Symbol not provided."}
+
+    # Allow passing either ``ABC`` or ``ABC.csv``
+    fname = symbol if symbol.lower().endswith(".csv") else f"{symbol}.csv"
+    data_path = os.path.join(os.getcwd(), "backend", "data", fname)
     if not os.path.exists(data_path):
         return {"error": "Stock data not found."}
     df = pd.read_csv(data_path)
